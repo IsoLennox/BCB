@@ -10,6 +10,14 @@
 <body>
    <?php
 
+function get_suffix($day) {
+	$suffixes = array('th','st','nd','rd','th','th','th','th','th','th');
+	if (($day % 100) >= 11 && ($day % 100) <= 13)
+	   $ordinal = $day . 'th';
+	else
+	   $ordinal = $day . $suffixes[$day % 10];
+	return $ordinal;
+} //end get_suffix
 
 if(isset($_GET['ashtray'])){
 
@@ -22,7 +30,7 @@ if(isset($_GET['ashtray'])){
 
 	foreach ($result as $row) {
 		echo "<div>";
-		echo "<h3>" . $row["weekday"] . " " . $row["month"] . " " . $row["day"] . "</h3>";
+		echo "<h3>" . $row["weekday"] . " " . $row["month"] . " " . get_suffix($row["day"]) . "</h3>";
 		echo "<h4>Rosemary: " . $row["rosemary"] . "</h4>";
 		echo "<h4>Isobel: " . $row["isobel"] . "</h4>";
 		echo "</div>";
