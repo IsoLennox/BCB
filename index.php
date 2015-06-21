@@ -63,12 +63,12 @@ echo "<div id=\"days\">
         <span><a href=\"index.php?ashtray&month\">Month</a></span>
     </div> </header><div id=\"page\">";
 //DAY VIEW
-	$sql = "SELECT * FROM log ORDER BY year, month, day DESC";
+	$sql = "SELECT * FROM log ORDER BY year DESC, month DESC, day DESC";
 	$result = mysqli_query($connection, $sql);
 
         foreach ($result as $row) {
             echo "<div class=\"container\">";
-            echo "<h3>" . $row["weekday"] . " " . $row["month"] . " " . get_suffix($row["day"]) . "</h3>";
+            echo "<h3>" . $row["weekday"] . " " . $row["month"] . " " . get_suffix($row["day"]) .  ", " . $row["year"] . "</h3>";
             echo "<span class=\"half\"><h4>Rosemary</h4> <h1>" . $row["rosemary"] . "</h1></span>";
             echo "<span class=\"half\"><h4>Isobel</h4> <h1>" . $row["isobel"] . "</h1></span>";
             echo "</div>";

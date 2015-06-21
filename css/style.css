@@ -79,7 +79,7 @@ a {
     clear: both;
     margin: 0 auto;
     overflow: hidden;
-    width: 500px;
+    width: 650px;
 }
 
 .container h3 {
@@ -106,6 +106,10 @@ a {
     text-align: center;
 } 
 
+label {
+    font-family: 'Special Elite', cursive;
+}
+
 input[type="submit"]{
     clear: both;
     text-align: center;
@@ -130,6 +134,9 @@ input[type="submit"]{
     }
     header h1 {
     font-size: 50px;
+}
+    h3{
+    font-size: 25px;
 }
     #ashtray { 
     margin-top: 10px;
