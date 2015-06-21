@@ -1,14 +1,28 @@
-#add_cig{
-    font-size: 25px;
+body {
+    margin: 60px;
+}
+
+#add_cig{ 
+    font-size: 75px;
 }
 
 input[type="submit"]{
     clear: both;
     text-align: center;
-    font-size: 25px;
+    font-size: 75px;
+    margin-top: 50px;
 }
 
 #view_ashtray{
     clear: both;
     margin-top: 100px;
+    padding-top: 100px;
+     
+}
+
+@media(min-width: 1000px) { 
+    
+    #add_cig, input[type="submit"]{
+    font-size: 25px;
+    }
 }

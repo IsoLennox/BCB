@@ -56,9 +56,17 @@ echo "<h2>Month View</h2>";
 
     
 }elseif(isset($_POST['add'])){
+    
+ 
+    date_default_timezone_set("US/Hawaii");
+ 
    
     
     $day=date('d');
+    $hour=date('G');
+    if($hour>=22){
+        $day=$day-1;
+    }
     $month=date('F');
     $year=date('Y');
     $weekday=date('l');
@@ -146,19 +154,23 @@ echo "<h2>Month View</h2>";
 
 
 
-}else{
+}else{ 
 
 //ADD ONE
     ?>
     <h1>Break The Camel's Back</h1>
     <div id="add_cig">
     <form method="POST" action="index.php?add" >
-        <input type="radio" name="smoker" value="isobel"> Isobel<br/>
-        <input type="radio" name="smoker" value="rosemary"> Rosemary<br/>
+        <label><input type="radio" name="smoker" value="isobel"> Isobel</label><br/>
+        <label><input type="radio" name="smoker" value="rosemary"> Rosemary</label><br/>
         <input type="submit" name="add" value="Smoke A Cigarette">
     </form>
-    </div>
+    <br/>
+    <br/>
+    <br/>
     <a id="view_ashtray" href="index.php?ashtray">View Ashtray</a>
+    </div>
+    
     <?php
     
 
