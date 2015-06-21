@@ -12,22 +12,48 @@ include('inc/db_connection.php');
 </head>
 <body>
    <?php echo message(); ?> 
-   <?php
-
+   <?php 
 
 if(isset($_GET['ashtray'])){
+    
+    ?>
+    <h1>Ashtray</h1>
+    <a href="index.php">&laquo; Smoke One</a>
+    <br/>
+    <a href="index.php?ashtray">Day</a>
+    <a href="index.php?ashtray&week">Week</a>
+    <a href="index.php?ashtray&month">Month</a>
+    <?php
 
 
 //ASHTRAY
-
-
-//DAY VIEW
-
-
+    
+    if(isset($_GET['week'])){
+    
 //WEEK VIEW 
+echo "<h2>Week View</h2>";
+        
+    }elseif(isset($_GET['month'])){
+    
+    //MONTH VIEW
+echo "<h2>Month View</h2>";
+    
+    
+    }else{
+    echo "<h2>Day View</h2>";
+//DAY VIEW
+	$sql = "SELECT * FROM log ORDER BY day DESC";
+	$result = mysqli_query($connection, $sql);
 
+        foreach ($result as $row) {
+            echo "<div>";
+            echo "<h3>" . $row["weekday"] . " " . $row["month"] . " " . get_suffix($row["day"]) . "</h3>";
+            echo "<h4>Rosemary: " . $row["rosemary"] . "</h4>";
+            echo "<h4>Isobel: " . $row["isobel"] . "</h4>";
+            echo "</div>";
+        }//END FOREACH
+    }//END GET VIEW TYPE
 
-//MONTH VIEW
     
 }elseif(isset($_POST['add'])){
    
@@ -124,6 +150,7 @@ if(isset($_GET['ashtray'])){
 
 //ADD ONE
     ?>
+    <h1>Break The Camel's Back</h1>
     <div id="add_cig">
     <form method="POST" action="index.php?add" >
         <input type="radio" name="smoker" value="isobel"> Isobel<br/>
