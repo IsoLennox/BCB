@@ -45,6 +45,20 @@ echo "<div id=\"days\">
     </div>
     </header>
     <div id=\"page\">";
+        	 echo "NOT WORKING";
+    $sql = "SELECT * FROM log ORDER BY year DESC, month DESC, day DESC";
+	$result = mysqli_query($connection, $sql);
+
+        foreach ($result as $row) {
+            echo "<div class=\"container\">";
+            echo "<h3>" . $row["weekday"] . " " . $row["month"] . " " . get_suffix($row["day"]) .  ", " . $row["year"] . "</h3>";
+            echo "<span class=\"half\"><h4>Rosemary</h4> <h1>" . $row["rosemary"] . "</h1></span>";
+            echo "<span class=\"half\"><h4>Isobel</h4> <h1>" . $row["isobel"] . "</h1></span>";
+            echo "</div>";
+        }//END FOREACH
+        echo " </div>"; // end #page
+        
+        
         
     }elseif(isset($_GET['month'])){
     
@@ -53,8 +67,33 @@ echo "<div id=\"days\">
         <span><a href=\"index.php?ashtray\">Day</a></span>
         <span><a href=\"index.php?ashtray&week\">Week</a></span>
         <span id=\"current\"><a href=\"index.php?ashtray&month\">Month</a></span>
-    </div> </header><div id=\"page\">";
-    
+    </div> </header><div id=\"page\">"; 
+    $sql = "SELECT * FROM log GROUP BY year, month ORDER BY year DESC, month DESC, day DESC";
+	$result = mysqli_query($connection, $sql);
+ 
+        
+        foreach ($result as $row) { 
+            
+            //seelct all where month and year == this , count++
+    $total_sql = "SELECT * FROM log WHERE month='{$row['month']}' and year={$row['year']}";
+	$total_result = mysqli_query($connection, $total_sql);
+            $rosemary_total=0;
+            $isobel_total=0;
+            foreach($total_result as $this_row){
+            $rosemary_total=$rosemary_total+$this_row['rosemary'];
+            $isobel_total=$isobel_total+$this_row['isobel'];
+            }
+           
+            echo "<div class=\"container\">";
+            echo "<h3>" . $row["month"] .  " " . $row["year"] . "</h3>";
+            echo "<span class=\"half\"><h4>Rosemary</h4> <h1>" . $rosemary_total . "</h1></span>";
+            echo "<span class=\"half\"><h4>Isobel</h4> <h1>" . $isobel_total . "</h1></span>";
+            echo "</div>";  
+        }//END FOREACH
+        echo " </div>"; // end #page
+        
+        
+        
     
     }else{
     echo "<div id=\"days\">

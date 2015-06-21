@@ -40,6 +40,11 @@ header h1 {
     top: 40px;
 }
 
+#days span:hover {
+    cursor: pointer;
+    background: rgba(255,155,0,.4);
+}
+
 #current {
     background: orange;
 }
