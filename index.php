@@ -42,7 +42,7 @@ echo "<h2>Month View</h2>";
     }else{
     echo "<h2>Day View</h2>";
 //DAY VIEW
-	$sql = "SELECT * FROM log ORDER BY day DESC";
+	$sql = "SELECT * FROM log ORDER BY year, month, day DESC";
 	$result = mysqli_query($connection, $sql);
 
         foreach ($result as $row) {
