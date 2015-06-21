@@ -22,6 +22,11 @@ if(isset($_GET['ashtray'])){
 
 //MONTH VIEW
     
+}elseif(isset($_POST['add'])){
+
+    //ADD ONE INSERT QUERY
+
+
 }else{
 
 //ADD ONE
