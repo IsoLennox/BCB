@@ -9,6 +9,14 @@ include('inc/db_connection.php');
     <meta charset="UTF-8">
     <title>BCB</title>
     <link rel="stylesheet" href="css/style.css">
+    <link href='http://fonts.googleapis.com/css?family=Special+Elite|Carme|Flavors' rel='stylesheet' type='text/css'>
+    <!--
+    
+    font-family: 'Special Elite', cursive;
+    font-family: 'Carme', sans-serif;
+    font-family: 'Flavors', cursive;
+    
+    -->
 </head>
 <body>
    <?php echo message(); ?> 
@@ -17,12 +25,11 @@ include('inc/db_connection.php');
 if(isset($_GET['ashtray'])){
     
     ?>
-    <h1>Ashtray</h1>
+    <header>
+    <h1 id="ashtray">The Ashtray</h1>
     <a href="index.php">&laquo; Smoke One</a>
-    <br/>
-    <a href="index.php?ashtray">Day</a>
-    <a href="index.php?ashtray&week">Week</a>
-    <a href="index.php?ashtray&month">Month</a>
+ 
+
     <?php
 
 
@@ -31,27 +38,42 @@ if(isset($_GET['ashtray'])){
     if(isset($_GET['week'])){
     
 //WEEK VIEW 
-echo "<h2>Week View</h2>";
+echo "<div id=\"days\">
+        <span><a href=\"index.php?ashtray\">Day</a></span>
+        <span id=\"current\"><a href=\"index.php?ashtray&week\">Week</a></span>
+        <span><a href=\"index.php?ashtray&month\">Month</a></span>
+    </div>
+    </header>
+    <div id=\"page\">";
         
     }elseif(isset($_GET['month'])){
     
     //MONTH VIEW
-echo "<h2>Month View</h2>";
+echo "<div id=\"days\">
+        <span><a href=\"index.php?ashtray\">Day</a></span>
+        <span><a href=\"index.php?ashtray&week\">Week</a></span>
+        <span id=\"current\"><a href=\"index.php?ashtray&month\">Month</a></span>
+    </div> </header><div id=\"page\">";
     
     
     }else{
-    echo "<h2>Day View</h2>";
+    echo "<div id=\"days\">
+        <span id=\"current\"><a href=\"index.php?ashtray\">Day</a></span>
+        <span><a href=\"index.php?ashtray&week\">Week</a></span>
+        <span><a href=\"index.php?ashtray&month\">Month</a></span>
+    </div> </header><div id=\"page\">";
 //DAY VIEW
 	$sql = "SELECT * FROM log ORDER BY year, month, day DESC";
 	$result = mysqli_query($connection, $sql);
 
         foreach ($result as $row) {
-            echo "<div>";
+            echo "<div class=\"container\">";
             echo "<h3>" . $row["weekday"] . " " . $row["month"] . " " . get_suffix($row["day"]) . "</h3>";
-            echo "<h4>Rosemary: " . $row["rosemary"] . "</h4>";
-            echo "<h4>Isobel: " . $row["isobel"] . "</h4>";
+            echo "<span class=\"half\"><h4>Rosemary</h4> <h1>" . $row["rosemary"] . "</h1></span>";
+            echo "<span class=\"half\"><h4>Isobel</h4> <h1>" . $row["isobel"] . "</h1></span>";
             echo "</div>";
         }//END FOREACH
+        echo " </div>"; // end #page
     }//END GET VIEW TYPE
 
     
@@ -158,7 +180,10 @@ echo "<h2>Month View</h2>";
 
 //ADD ONE
     ?>
+   <header>
     <h1>Break The Camel's Back</h1>
+    </header> 
+    <div id="page">
     <div id="add_cig">
     <form method="POST" action="index.php?add" >
         <label><input type="radio" name="smoker" value="isobel"> Isobel</label><br/>
@@ -170,6 +195,7 @@ echo "<h2>Month View</h2>";
     <br/>
     <a id="view_ashtray" href="index.php?ashtray">View Ashtray</a>
     </div>
+    </div>
     
     <?php
     
@@ -177,6 +203,8 @@ echo "<h2>Month View</h2>";
 }
 
 ?>
+   
+  
     
 </body>
 </html>

@@ -1,10 +1,110 @@
 body {
-    margin: 60px;
+    font-family: 'Carme', sans-serif;
+    margin: 0px;
+    
+}
+
+header{
+    font-family: 'Special Elite', cursive;
+    
+    text-align: center;
+    background: #222;
+    color: #eee;
+    padding: 10px; 
+    position: fixed;
+    z-index: 999;
+    width: 100%;
+    overflow: hidden;
+    font-size:60px;
+}
+
+header h1 {
+    font-size: 90px; 
+    margin-top: 30px;
+}
+
+#days {
+    height: 150px; 
+}
+
+#days a {
+    font-size: 80px;
+}
+#days span {
+/*    border: 1px solid white;*/
+    padding: 50px;
+    font-size: 30px;
+    margin-top: 30px;
+    clear: both;
+    position: relative;
+    top: 40px;
+}
+
+#current {
+    background: orange;
+}
+
+#page{
+    padding-top: 400px;
+    margin-bottom: 250px;
+}
+
+h1{
+    font-size: 70px;
+    margin: 0;
+}
+
+h3{
+    font-size: 50px;
+}
+#ashtray {
+    font-family: 'Special Elite', cursive;
+    margin-top: 30px;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+ 
+
+.half{
+    width: 45%;
+    float: left;
+    
+}
+
+.container{
+    clear: both;
+    margin: 0 auto;
+    overflow: hidden;
+    width: 500px;
+}
+
+.container h3 {
+    padding: 10px;
+    background: #222;
+    color: #eee;
+    
+/*    font-size: 30px;*/
+}
+
+.container .half{
+    text-align: center;
+    border: 1px solid #ddd;
+    margin-bottom: 50px;
+    margin: 0 auto;
+    font-size: 40px;
+    padding: 10px;
+
+    
 }
 
 #add_cig{ 
     font-size: 75px;
-}
+    text-align: center;
+} 
 
 input[type="submit"]{
     clear: both;
@@ -17,10 +117,41 @@ input[type="submit"]{
     clear: both;
     margin-top: 100px;
     padding-top: 100px;
-     
+      color: dimgray;
+    font-family: 'Flavors', cursive;
+    text-align: center;
 }
 
 @media(min-width: 1000px) { 
+    
+    header{
+        font-size:30px;
+        
+    }
+    header h1 {
+    font-size: 50px;
+}
+    #ashtray { 
+    margin-top: 10px;
+}
+    #days {
+        height: 100px;
+    }
+    
+    #days a {
+    font-size: 30px;
+}
+    
+    #days span { 
+    padding: 20px;
+        border: 1px solid white;
+    }
+    
+    
+#page{
+    padding-top: 240px;
+    margin-bottom: 250px;
+}
     
     #add_cig, input[type="submit"]{
     font-size: 25px;
