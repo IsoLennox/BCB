@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 21, 2015 at 12:06 AM
+-- Generation Time: Jun 21, 2015 at 12:32 AM
 -- Server version: 5.5.42-37.1
 -- PHP Version: 5.4.23
 
@@ -32,18 +32,9 @@ CREATE TABLE IF NOT EXISTS `log` (
   `day` int(2) NOT NULL,
   `month` varchar(12) COLLATE utf8_unicode_ci NOT NULL,
   `year` int(4) NOT NULL,
-  `weekday` varchar(12) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
---
-
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL,
-  `name` varchar(20) COLLATE utf8_unicode_ci NOT NULL
+  `weekday` varchar(12) COLLATE utf8_unicode_ci NOT NULL,
+  `rosemary` int(11) NOT NULL,
+  `isobel` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -57,12 +48,6 @@ ALTER TABLE `log`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -70,11 +55,6 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `log`
 --
 ALTER TABLE `log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
