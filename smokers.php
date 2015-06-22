@@ -2,7 +2,9 @@
 require_once("inc/functions.php"); 
 include('inc/db_connection.php'); 
 ?>
-<?php $_SESSION['username']="Isobel"; ?>
+<?php 
+//$_SESSION['username']="Isobel"; 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
