@@ -131,6 +131,11 @@ input[type="submit"]{
     text-align: center;
 }
 
+#smoke_script {
+    color: dimgray;
+font-family: 'Flavors', cursive;
+}
+
 @media(min-width: 1000px) { 
     
     header{

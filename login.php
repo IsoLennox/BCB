@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>BCB Login</title>
     <link rel="stylesheet" href="css/style.css">
+    <link href='http://fonts.googleapis.com/css?family=Special+Elite|Carme|Flavors' rel='stylesheet' type='text/css'>
 </head>
 <body>
   <div id="page" class="container">
@@ -14,7 +15,7 @@
        <input type="submit" name="login" value="Smoke">
    </form>
      
-   <a id="view_ashtray" href="register.php">New Smoker</a>
+   <a id="smoke_script" href="register.php">New Smoker</a>
      
     </div>
 </body>
