@@ -30,8 +30,7 @@ if(isset($_GET['ashtray'])){
     <header>
     <a class="left username" href="profile.php"><?php echo $_SESSION['username']; ?></a>
     <h1 id="ashtray">The Ashtray</h1>
-    
-    <a href="index.php">&laquo; Smoke One</a>
+    <a class="orange" href="index.php">&laquo; Smoke One</a>
  
 
     <?php
