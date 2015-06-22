@@ -6,5 +6,5 @@
 	unset($_SESSION["user_id"]);
 	unset($_SESSION["username"]);
 
-	redirect_to("index.php");
+	redirect_to("login.php");
 ?>
