@@ -24,7 +24,8 @@ include('inc/db_connection.php');
    <?php echo message(); ?> 
  
    <header>
-    <a class="left username" href="profile.php"><?php echo $_SESSION['username']; ?></a>
+    <a class="username" href="profile.php"><?php echo $_SESSION['username']; ?></a>
+    <a class="logout" href="logout.php">Logout</a>
     <h1 id="ashtray">Smokers</h1>
     <a class="orange" href="index.php">&laquo; Smoke One</a>
    <div id="days">

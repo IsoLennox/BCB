@@ -24,7 +24,7 @@ include('inc/db_connection.php');
    <?php echo message(); ?> 
  
    <header>
-  
+      <a class="logout" href="logout.php">Logout</a>
     <h1> <?php echo $_SESSION['username']; ?></h1>
     </header> 
     <div id="page" class="container login">

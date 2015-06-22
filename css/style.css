@@ -26,6 +26,13 @@ header h1 {
 .left { float: left;}
 .right {float: right;}
 .username { position: absolute; right: 50px;}
+.logout { 
+    position: absolute; 
+    left: 50px; 
+    top: 20px;
+    font-size: 14px;
+/*    font-family: 'Carme', sans-serif;*/
+}
 
 a:hover {color: orange;}
 
