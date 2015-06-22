@@ -16,7 +16,7 @@ function get_suffix($day) {
 
 function attempt_login($username, $password) {
 	//find user, then password
-	$user = find_user_by_user_name($username);
+	$user = find_user_by_username($username);
 	if ($user) {
 		//found admin, check password
 		if (password_verify($password, $user["password"])) {

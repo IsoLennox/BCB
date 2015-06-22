@@ -9,7 +9,7 @@ $userName = "";
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-	$userName = $_POST["userName"];
+	$userName = $_POST["username"];
 	$password = $_POST["password"];
 
 	$found_user = attempt_login($username, $password);
