@@ -5,11 +5,11 @@ include('inc/db_connection.php');
 
 <?php
 
-$userName = "";
+$username = "";
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-	$userName = $_POST["username"];
+	$username = $_POST["username"];
 	$password = $_POST["password"];
 
 	$found_user = attempt_login($username, $password);
@@ -38,7 +38,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 <body>
   <div id="page" class="container login">
    <h1><label for="Login">Login</label></h1>
-   <form class="login" action="#">
+   <?php echo message(); ?>
+   <form class="login" action="#" method="POST">
        <input type="text" name="username" placeholder="USERNAME">
        <input type="password" name="password" placeholder="PASSWORD">
        <input type="submit" name="login" value="Smoke">
