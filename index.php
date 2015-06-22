@@ -2,7 +2,7 @@
 require_once("inc/functions.php"); 
 include('inc/db_connection.php'); 
 ?>
-
+<?php $_SESSION['username']="Isobel"; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,9 +24,13 @@ include('inc/db_connection.php');
 
 if(isset($_GET['ashtray'])){
     
+    //<span><a href=\"index.php?ashtray&week\">Week</a></span> 
+    
     ?>
     <header>
+    <a class="left username" href="profile.php"><?php echo $_SESSION['username']; ?></a>
     <h1 id="ashtray">The Ashtray</h1>
+    
     <a href="index.php">&laquo; Smoke One</a>
  
 
@@ -39,9 +43,9 @@ if(isset($_GET['ashtray'])){
     
 //WEEK VIEW 
 echo "<div id=\"days\">
-        <span><a href=\"index.php?ashtray\">Day</a></span>
-        <span id=\"current\"><a href=\"index.php?ashtray&week\">Week</a></span>
+        <span><a href=\"index.php?ashtray\">Day</a></span> 
         <span><a href=\"index.php?ashtray&month\">Month</a></span>
+        <span><a href=\"smokers.php\">Smokers</a></span>
     </div>
     </header>
     <div id=\"page\">";
@@ -65,8 +69,8 @@ echo "<div id=\"days\">
     //MONTH VIEW
 echo "<div id=\"days\">
         <span><a href=\"index.php?ashtray\">Day</a></span>
-        <span><a href=\"index.php?ashtray&week\">Week</a></span>
         <span id=\"current\"><a href=\"index.php?ashtray&month\">Month</a></span>
+        <span><a href=\"smokers.php\">Smokers</a></span>
     </div> </header><div id=\"page\">"; 
     $sql = "SELECT * FROM log GROUP BY year, month ORDER BY year DESC, month DESC, day DESC";
 	$result = mysqli_query($connection, $sql);
@@ -97,9 +101,9 @@ echo "<div id=\"days\">
     
     }else{
     echo "<div id=\"days\">
-        <span id=\"current\"><a href=\"index.php?ashtray\">Day</a></span>
-        <span><a href=\"index.php?ashtray&week\">Week</a></span>
+        <span id=\"current\"><a href=\"index.php?ashtray\">Day</a></span> 
         <span><a href=\"index.php?ashtray&month\">Month</a></span>
+        <span><a href=\"smokers.php\">Smokers</a></span>
     </div> </header><div id=\"page\">";
 //DAY VIEW
 	$sql = "SELECT * FROM log ORDER BY year DESC, month DESC, day DESC";
@@ -220,13 +224,13 @@ echo "<div id=\"days\">
 //ADD ONE
     ?>
    <header>
+    <a class="left username" href="profile.php"><?php echo $_SESSION['username']; ?></a>
     <h1>Break The Camel's Back</h1>
     </header> 
     <div id="page">
     <div id="add_cig">
     <form method="POST" action="index.php?add" >
-        <label><input type="radio" name="smoker" value="isobel"> Isobel</label><br/>
-        <label><input type="radio" name="smoker" value="rosemary"> Rosemary</label><br/>
+        <label><input type="hidden" name="smoker" value="<?php echo $_SESSION['user_id']; ?>"> <?php echo $_SESSION['username']; ?></label><br/> 
         <input type="submit" name="add" value="Smoke A Cigarette">
     </form>
     <br/>

@@ -23,6 +23,10 @@ header h1 {
     margin-top: 30px;
 }
 
+.left { float: left;}
+.right {float: right;}
+.username { position: absolute; right: 50px;}
+
 #days {
     height: 150px; 
 }
