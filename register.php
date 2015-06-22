@@ -1,3 +1,30 @@
+<?php require_once("inc/session.php");
+require_once("inc/functions.php");
+include('inc/db_connection.php');
+?>
+<?php
+
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+  $username = $_POST["username"];
+  $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
+
+  $sql = "INSERT INTO users (username, password) VALUES ('{$username}', '{$password}')";
+
+  $result = mysqli_query($connection, $sql);
+
+  if ($result) {
+    //success
+    $_SESSION["message"] = "Smoker created";
+    redirect_to("login.php");
+  } else {
+    //failure
+    $_SESSION["message"] = "Smoker creation failed";
+    redirect_to("register.php");
+  }
+}
+
+
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
