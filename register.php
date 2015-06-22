@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <div id="page">
    <h1>New Smoker</h1>
       <form action="#">
        <input type="text" name="username" placeholder="USERNAME">
@@ -13,6 +14,6 @@
        <input type="password" name="confirmpassword" placeholder="CONFIRM PASSWORD">
        <input type="submit" name="login" value="Smoke">
    </form>
-    
+    </div>
 </body>
 </html>
