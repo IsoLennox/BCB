@@ -9,7 +9,7 @@ if(isset($_GET['ashtray'])){
     <a class="left username" href="profile.php"><?php echo $_SESSION['username']; ?></a>
     <a class="logout" href="logout.php">Logout</a>
     <h1 id="ashtray">The Ashtray</h1>
-    <a class="orange" href="index.php">&laquo; Smoke One</a>
+    <a href="index.php">&laquo; Smoke One</a>
  
 
     <?php
@@ -96,7 +96,7 @@ echo "<div id=\"days\">
                         }
                         
                         if($today['user_id']==$_SESSION['user_id']){
-                            echo "<span class=\"half\"><h4>".$_SESSION['username']."</h4> <h1>" . $today['total'] . "</h1></span>";
+                            echo "<span class=\"orange half\"><h4>".$_SESSION['username']."</h4> <h1>" . $today['total'] . "</h1></span>";
                         }
  
                 }//end if anyone smoked today 

@@ -37,6 +37,8 @@ header h1 {
 .smokers{ font-size: 30px;}
 
 a:hover {color: orange;}
+
+.orange{ background: rgba(235,122,0,.4)}
 .red {color: firebrick;}
 
 #days {
@@ -186,11 +188,11 @@ input[type="submit"]{
 }
 
 #smoke_script {font-family: 'Flavors', cursive; }
-#smoke_script, #cancel {
+#smoke_script, #cancel, .fa-user-plus {
     color: dimgray;
 }
 #cancel { font-family: 'Carme', sans-serif; }
-#cancel, #smoke_script:hover { color: #222; }
+#cancel, #smoke_script:hover, .fa-user-plus { color: #222; }
 
 
 @media(min-width: 1000px) { 

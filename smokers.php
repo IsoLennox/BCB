@@ -4,7 +4,7 @@
     <a class="username" href="profile.php"><?php echo $_SESSION['username']; ?></a>
     <a class="logout" href="logout.php">Logout</a>
     <h1 id="ashtray">Smokers</h1>
-    <a class="orange" href="index.php">&laquo; Smoke One</a>
+    <a href="index.php">&laquo; Smoke One</a>
    <div id="days">
         <span><a href="index.php?ashtray">Day</a></span> 
         <span><a href="index.php?ashtray&month">Month</a></span>
@@ -13,6 +13,61 @@
 <!--    -->
     </header> 
     <div id="page" class="container login">
+        
+        <?php
+if(isset($_GET['add'])){
+    $user_id=$_GET['add'];
+    
+            $this_user = "SELECT * FROM friends WHERE user_id={$_SESSION['user_id']} AND friend_id={$user_id}";
+            $this_user_result = mysqli_query($connection, $this_user);
+            if($this_user_result){
+                $rows=mysqli_num_rows($this_user_result);
+                if($rows >=1){
+                    echo "Already a friend";
+                }else{
+                    $query  = "INSERT INTO friends (";
+                    $query .= " user_id, friend_id ";
+                    $query .= ") VALUES (";
+                    $query .= " {$_SESSION['user_id']}, {$user_id}";
+                    $query .= ") ";
+                    $cigarette_added = mysqli_query($connection, $query);
+
+
+                    if ($cigarette_added) { 
+                        // Success
+//                        $_SESSION["message"] = "Smoker Added!"; 
+                        redirect_to("smokers.php");
+                    } else {
+                        // Failure
+                        $_SESSION["message"] = "This smoker could not join you";
+                        redirect_to("smokers.php");
+                    }//END UPDATE TODAYS LOG
+                }
+            }else{
+                echo "This person is not your friend";
+            }
+    
+    
+
+}
+
+
+if(isset($_GET['remove'])){
+    $user_id=$_GET['remove'];
+    
+            $this_user = "DELETE FROM friends WHERE user_id={$_SESSION['user_id']} AND friend_id={$user_id} LIMIT 1";
+            $this_user_result = mysqli_query($connection, $this_user);
+            if($this_user_result){
+//                $_SESSION["message"] = "Smoker Removed"; 
+                redirect_to("smokers.php");
+
+            }else{
+//                $_SESSION["message"] = "Can't remove this smoker"; 
+                redirect_to("smokers.php");
+            }
+
+}
+?>
 
         
  <?php
@@ -24,7 +79,7 @@
         echo "<div class=\"container\">";
         foreach ($result as $row) {
             $user=find_user_by_user_id($row['friend_id']);
-            echo "<label class=\"smokers\">".$user['username']."</label><a href=\"#\"><i class=\"fa fa-times red\"></i></a><br/>";
+            echo "<label class=\"smokers\">".$user['username']."</label><a href=\"smokers.php?remove=".$user['id']."\"><i class=\"fa fa-times red\"></i></a><br/>";
         }//END FOREACH
         echo "</div>";
         }else{
@@ -39,15 +94,28 @@
    
    
     <h2>Add A Smoker</h2>
- 
      <form action="#">
-            <input type="text" placeholder="SEARCH USERS">
-        </form>
-        
-<!--        <a id="cancel" href="smokers.php">cancel</a>-->
-       
-       <div id="results"></div>
+            <input onkeyup="findFriend(); return false;" name="username" id="username" type="text" placeholder="SEARCH USERS"> 
+        </form> 
+      <div id="eavailability"></div>
     </div>
+    <script>
+         
+        function findFriend(){
+               $(document).ready(function () {
+            $("#username").keyup(function () {
+              var username = $(this).val();
+                $.ajax({
+                  url: "validation.php?username="+username
+                }).done(function( data ) {
+                  $("#eavailability").html(data);
+                });   
+
+            });
+          });
+
+        }         
+    </script>
  
   
     
