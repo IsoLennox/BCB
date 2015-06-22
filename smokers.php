@@ -40,11 +40,16 @@ include('inc/db_connection.php');
     $sql = "SELECT * FROM friends WHERE user_id={$_SESSION['user_id']}";
 	$result = mysqli_query($connection, $sql);
     if($result){
+        $rows=mysqli_num_rows($result);
+        if($rows>=1){
         echo "<div class=\"container\">";
         foreach ($result as $row) {
             echo $row['friend_id']."<br/>";
         }//END FOREACH
         echo "</div>";
+        }else{
+            echo "<h4>You smoke alone.</h4";
+        }
     }else{
         echo "<h4>You smoke alone.</h4";
     }
