@@ -35,20 +35,10 @@ include('inc/db_connection.php');
     </div> 
 <!--    -->
     </header> 
-    <div id="page" class="container">
+    <div id="page" class="container login">
 
-        <a id="smoke_script" href="smokers.php?add">Add A Smoker</a>
-         <?php
-
-if(isset($_GET['add'])){ ?>
-     <form action="#">
-            <input type="text" placeholder="SEARCH USERS">
-        </form>
         
-        <a id="cancel" href="smokers.php">cancel</a>
-        
-        <?php 
-}else{
+ <?php
     $sql = "SELECT * FROM friends WHERE user_id={$_SESSION['user_id']}";
 	$result = mysqli_query($connection, $sql);
     if($result){
@@ -65,9 +55,20 @@ if(isset($_GET['add'])){ ?>
     }else{
         echo "<h4>You smoke alone.</h4";
     }
-    
-}
+   
+ 
 ?>
+   
+   
+    <h2>Add A Smoker</h2>
+ 
+     <form action="#">
+            <input type="text" placeholder="SEARCH USERS">
+        </form>
+        
+<!--        <a id="cancel" href="smokers.php">cancel</a>-->
+       
+       <div id="results"></div>
     </div>
  
   
