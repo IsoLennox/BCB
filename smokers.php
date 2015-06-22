@@ -46,10 +46,7 @@ if(isset($_GET['add'])){
             }else{
                 echo "This person is not your friend";
             }
-    
-    
-
-}
+}//END ADD
 
 
 if(isset($_GET['remove'])){
@@ -66,11 +63,8 @@ if(isset($_GET['remove'])){
                 redirect_to("smokers.php");
             }
 
-}
-?>
-
-        
- <?php
+}//END REMOVE
+ 
     $sql = "SELECT * FROM friends WHERE user_id={$_SESSION['user_id']}";
 	$result = mysqli_query($connection, $sql);
     if($result){
