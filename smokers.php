@@ -28,9 +28,7 @@ if(isset($_GET['ashtray'])){
     
     ?>
     <header>
-    <a class="left username" href="profile.php"><?php echo $_SESSION['username']; ?></a>
     <h1 id="ashtray">The Ashtray</h1>
-    
     <a href="index.php">&laquo; Smoke One</a>
  
 
@@ -224,7 +222,6 @@ echo "<div id=\"days\">
 //ADD ONE
     ?>
    <header>
-    <a class="left username" href="profile.php"><?php echo $_SESSION['username']; ?></a>
     <h1>Break The Camel's Back</h1>
     </header> 
     <div id="page">
