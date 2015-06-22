@@ -34,7 +34,10 @@ header h1 {
 /*    font-family: 'Carme', sans-serif;*/
 }
 
+.smokers{ font-size: 30px;}
+
 a:hover {color: orange;}
+.red {color: firebrick;}
 
 #days {
     height: 150px; 

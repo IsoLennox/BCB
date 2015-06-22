@@ -12,6 +12,7 @@ include('inc/db_connection.php');
     <title>BCB</title>
     <link rel="stylesheet" href="css/style.css">
     <link href='http://fonts.googleapis.com/css?family=Special+Elite|Carme|Flavors' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <!--
     
     font-family: 'Special Elite', cursive;

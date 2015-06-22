@@ -56,6 +56,23 @@ function find_user_by_username($username) {
 	}
 } //end find_user_by_username
 
+function find_user_by_user_id($user_id) {
+	global $connection;
+	$safe_user_id = mysql_prep($user_id);
+
+	$sql = "SELECT * ";
+	$sql .= "FROM users ";
+	$sql .= "WHERE id = '{$safe_user_id}' ";
+	$sql .= "LIMIT 1";
+
+	$user_set = mysqli_query($connection, $sql);
+	if ($user = mysqli_fetch_assoc($user_set)) {
+		return $user;
+	} else {
+		return null;
+	}
+} //end find_user_by_user_id
+
 
 
 

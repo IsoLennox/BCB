@@ -12,6 +12,7 @@ include('inc/db_connection.php');
     <title>BCB Smokers</title>
     <link rel="stylesheet" href="css/style.css">
     <link href='http://fonts.googleapis.com/css?family=Special+Elite|Carme|Flavors' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <!--
     
     font-family: 'Special Elite', cursive;
@@ -46,7 +47,8 @@ include('inc/db_connection.php');
         if($rows>=1){
         echo "<div class=\"container\">";
         foreach ($result as $row) {
-            echo $row['friend_id']."<br/>";
+            $user=find_user_by_user_id($row['friend_id']);
+            echo "<label class=\"smokers\">".$user['username']."</label><a href=\"#\"><i class=\"fa fa-times red\"></i></a><br/>";
         }//END FOREACH
         echo "</div>";
         }else{
