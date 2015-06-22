@@ -1,3 +1,32 @@
+<?php require_once("inc/session.php");
+require_once("inc/functions.php");
+include('inc/db_connection.php');
+?>
+
+<?php
+
+$userName = "";
+
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+
+	$userName = $_POST["userName"];
+	$password = $_POST["password"];
+
+	$found_user = attempt_login($username, $password);
+
+	if ($found_user) {
+		//Success - set session variables
+		$_SESSION["user_id"] = $found_user["id"];
+		$_SESSION["username"] = $found_user["username"];
+		redirect_to("index.php");
+	} else {
+		//failure - show error message
+		$_SESSION["message"] = "Username or password not found.  No smokes for you!";
+		redirect_to("login.php");
+	}
+}
+
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
