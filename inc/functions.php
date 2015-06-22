@@ -4,6 +4,12 @@ function redirect_to($new_location) {
     header("Location: " . $new_location);
 	  exit; }
 
+function mysql_prep($string) {
+	global $connection;
+
+	$escaped_string = mysqli_real_escape_string($connection, $string);
+	return $escaped_string;
+} //end mysql_prep
 
 function get_suffix($day) {
 	$suffixes = array('th','st','nd','rd','th','th','th','th','th','th');
@@ -34,7 +40,8 @@ function attempt_login($username, $password) {
 } //end attempt_login
 
 function find_user_by_username($username) {
-	$safe_username = mysqli_real_escape_string($connection, $username);
+	global $connection;
+	$safe_username = mysql_prep($username);
 
 	$sql = "SELECT * ";
 	$sql .= "FROM users ";
