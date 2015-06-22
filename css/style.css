@@ -120,7 +120,27 @@ input[type="submit"]{
     text-align: center;
     font-size: 75px;
     margin-top: 50px;
+    font-family: 'Special Elite', cursive;
 }
+
+.login{
+    width: 400px;
+    
+}
+.login input{
+    clear: both;
+    width: 200px;
+    margin: 10px;
+    padding: 5px;
+}
+
+.login a {
+    text-align: center;
+    margin: 20px;
+    font-size: 30px;
+}
+
+
 
 #view_ashtray{
     clear: both;
@@ -135,6 +155,7 @@ input[type="submit"]{
     color: dimgray;
 font-family: 'Flavors', cursive;
 }
+#smoke_script:hover { color: #222; }
 
 @media(min-width: 1000px) { 
     

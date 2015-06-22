@@ -7,8 +7,8 @@
     <link href='http://fonts.googleapis.com/css?family=Special+Elite|Carme|Flavors' rel='stylesheet' type='text/css'>
 </head>
 <body>
-  <div id="page" class="container">
-   <h1>New Smoker</h1>
+  <div id="page" class="container login">
+   <h1><label for="New Smoker">New Smoker</label></h1>
       <form action="#">
        <input type="text" name="username" placeholder="USERNAME">
        <input type="password" name="password" placeholder="PASSWORD">
