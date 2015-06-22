@@ -37,6 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 <body>
   <div id="page" class="container login">
    <h1><label for="New Smoker">New Smoker</label></h1>
+   <?php echo message(); ?>
       <form action="#" method="POST">
        <input type="text" name="username" placeholder="USERNAME">
        <input type="password" name="password" placeholder="PASSWORD">
