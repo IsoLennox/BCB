@@ -162,7 +162,19 @@ input[type="submit"]{
     font-size: 30px;
 }
 
+.available, .taken {
+    padding: 10px;
 
+}
+
+.available {
+    background: #222;
+    color: whitesmoke;
+}
+
+.taken {
+    background: orange;
+}
 
 #view_ashtray{
     clear: both;
