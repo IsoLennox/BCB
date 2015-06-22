@@ -39,6 +39,16 @@ function attempt_login($username, $password) {
 	}
 } //end attempt_login
 
+function logged_in(){
+    return isset($_SESSION['user_id']);
+}
+
+function confirm_logged_in(){
+    if (!logged_in()){
+        redirect_to("login.php");
+    }
+}	
+
 function find_user_by_username($username) {
 	global $connection;
 	$safe_username = mysql_prep($username);

@@ -71,46 +71,76 @@ echo "<div id=\"days\">
         <span><a href=\"smokers.php\">Smokers</a></span>
     </div> </header><div id=\"page\">";
 //DAY VIEW
-    $sql = "SELECT * FROM log GROUP BY year, month, day ORDER BY year DESC, month DESC, day DESC";
+    $sql = "SELECT * FROM log WHERE user_id={$_SESSION['user_id']} ORDER BY year DESC, month DESC, day DESC";
 	$result = mysqli_query($connection, $sql);
     $today_rows=mysqli_num_rows($result);
         if($today_rows>=1){
-            foreach ($result as $row) {
-                echo "<div class=\"container\">";
-                echo "<h3>" . $row["weekday"] . " " . $row["month"] . " " . get_suffix($row["day"]) .  ", " . $row["year"] . "</h3>";
- 
-                 
-                $today_sql = "SELECT * FROM log WHERE day={$row["day"]} AND year={$row["year"]} AND month='{$row["month"]}' ";
-                $today_result = mysqli_query($connection, $today_sql); 
-                if($today_result){ 
-                    foreach($today_result as $today){
-                        //SEE IF FRIEND BEFORE SHOWING COUNT
-                        $friend_sql = "SELECT * FROM friends WHERE user_id={$_SESSION['user_id']} AND friend_id={$today['user_id']}";
-                        $friend_result = mysqli_query($connection, $friend_sql); 
-                        if($friend_result){
-                            $friend_rows=mysqli_num_rows($friend_result);
-                            if($friend_rows>=1){
-                            $this_friend=find_user_by_user_id($today['user_id']); 
-                                echo "<span class=\"half\"><h4>".$this_friend[username]."</h4> <h1>" . $today['total'] . "</h1></span>";
-                            }//end if friend show
-                        }
-                        
-                        if($today['user_id']==$_SESSION['user_id']){
-                            echo "<span class=\"half\"><h4>".$_SESSION['username']."</h4> <h1>" . $today['total'] . "</h1></span>";
-                        }
- 
-                }//end if anyone smoked today 
+        foreach ($result as $row) {
+            echo "<div class=\"container\">";
+            echo "<h3>" . $row["weekday"] . " " . $row["month"] . " " . get_suffix($row["day"]) .  ", " . $row["year"] . "</h3>";
+            echo "<span class=\"half\"><h4>".$_SESSION['username']."</h4> <h1>" . $row["total"] . "</h1></span>";
+            
+            
+                    //GET FRIENDS
+    $friend_sql = "SELECT * FROM friends WHERE user_id={$_SESSION['user_id']}";
+	$friend_result = mysqli_query($connection, $friend_sql);
 
-
-
-                echo "</div>"; //END CONTAINER
-            }//END GET EACH USER
+        foreach ($friend_result as $friend) {
+            $user=find_user_by_user_id($friend['friend_id']);  
+            $friend_count_sql = "SELECT * FROM log WHERE user_id={$user['id']} AND day={$row["day"]} AND year={$row["year"]} AND month='{$row["month"]}' ";
+            $count_result = mysqli_query($connection, $friend_count_sql); 
+            if($count_result){ 
+                $count_array=mysqli_fetch_assoc($count_result);
+                    if(empty($count_array["total"])){
+                        $count=0;    
+                    }else{
+                        $count=$count_array["total"];
+                    } 
+                    echo "<span class=\"half\"><h4>".$user['username']."</h4> <h1>" . $count . "</h1></span>"; 
+                   
+            }else{ 
+                echo "<span class=\"half\"><h4>".$user['username']."</h4> <h1>0</h1></span>"; 
+            }
+        }//END FOREACH
+            
+            
+            
+            echo "</div>"; //END CONTAINER
+        }//END FOREACH
         
-        }//END FOREACH FROM LOG     
-    }//END GET EVERY DAY
-         echo " </div>"; // end #page
+
+        }else{
+            //YOU HAVENT SMOKED TODAY, GET FRIENDS INSTEAD
+                                //GET FRIENDS
+    $friend_sql = "SELECT * FROM friends WHERE user_id={$_SESSION['user_id']}";
+	$friend_result = mysqli_query($connection, $friend_sql);
+
+        foreach ($friend_result as $friend) {
+            $user=find_user_by_user_id($friend['friend_id']);  
+            $friend_count_sql = "SELECT * FROM log WHERE user_id={$user['id']} ORDER BY year DESC, month DESC, day DESC ";
+            $count_result = mysqli_query($connection, $friend_count_sql); 
+            if($count_result){
+                
+            foreach ($count_result as $row) {
+            echo "<div class=\"container\">";
+            echo "<h3>" . $row["weekday"] . " " . $row["month"] . " " . get_suffix($row["day"]) .  ", " . $row["year"] . "</h3>";
+            echo "<span class=\"half\"><h4>".$_SESSION['username']."</h4> <h1>0</h1></span>";
+            echo "<span class=\"half\"><h4>".$user['username']."</h4> <h1>" . $row["total"] . "</h1></span>";
+            echo "</div>";   
+                        }
+                   
+            }else{ 
+                echo "<span class=\"half\"><h4>".$user['username']."</h4> <h1>0</h1></span>"; 
+            }
+        }//END FOREACH
+    }//END FIND YOUR COUNT
+        
+        
+        echo " </div>"; // end #page
+    }//END GET VIEW TYPE
+        
     
-    }//END ASHTRAY SUBPAGES
+
     
 }elseif(isset($_POST['add'])){
     

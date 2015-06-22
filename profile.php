@@ -1,27 +1,4 @@
-<?php require_once("inc/session.php"); 
-require_once("inc/functions.php"); 
-include('inc/db_connection.php'); 
-?>
-<?php 
-//$_SESSION['username']="Isobel";
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title><?php echo $_SESSION['username']; ?>- BCB</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link href='http://fonts.googleapis.com/css?family=Special+Elite|Carme|Flavors' rel='stylesheet' type='text/css'>
-    <!--
-    
-    font-family: 'Special Elite', cursive;
-    font-family: 'Carme', sans-serif;
-    font-family: 'Flavors', cursive;
-    
-    -->
-</head>
-<body>
-   <?php echo message(); ?> 
+<?php include('inc/header.php'); ?>
  
    <header>
       <a class="logout" href="logout.php">Logout</a>

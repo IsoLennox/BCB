@@ -1,28 +1,4 @@
-<?php require_once("inc/session.php"); 
-require_once("inc/functions.php"); 
-include('inc/db_connection.php'); 
-?>
-<?php 
-//$_SESSION['username']="Isobel"; 
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>BCB Smokers</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link href='http://fonts.googleapis.com/css?family=Special+Elite|Carme|Flavors' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <!--
-    
-    font-family: 'Special Elite', cursive;
-    font-family: 'Carme', sans-serif;
-    font-family: 'Flavors', cursive;
-    
-    -->
-</head>
-<body>
-   <?php echo message(); ?> 
+<?php include('inc/header.php'); ?>
  
    <header>
     <a class="username" href="profile.php"><?php echo $_SESSION['username']; ?></a>

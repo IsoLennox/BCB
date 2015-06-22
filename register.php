@@ -1,8 +1,7 @@
 <?php require_once("inc/session.php");
 require_once("inc/functions.php");
 include('inc/db_connection.php');
-?>
-<?php
+ 
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
   echo "posted";
