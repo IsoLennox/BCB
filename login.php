@@ -36,9 +36,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <link href='http://fonts.googleapis.com/css?family=Special+Elite|Carme|Flavors' rel='stylesheet' type='text/css'>
 </head>
 <body>
-  <div id="page" class="container">
-   <h1>Login</h1>
-   <form action="#">
+  <div id="page" class="container login">
+   <h1><label for="Login">Login</label></h1>
+   <form class="login" action="#">
        <input type="text" name="username" placeholder="USERNAME">
        <input type="password" name="password" placeholder="PASSWORD">
        <input type="submit" name="login" value="Smoke">
