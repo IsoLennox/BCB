@@ -41,9 +41,11 @@ if(isset($_GET['new_username'])) {
     $sql = "SELECT * FROM users WHERE username='{$new_username}'";
     $result = mysqli_query($connection, $sql);
     if (mysqli_num_rows($result)<1) {
-        echo "<span class=\"available\">Available!</span>";
+        echo "valid";
+        return;
     } else {
-        echo "<span class=\"taken\">Already a smoker</span>";
+        echo "taken";
+        return;
     }
 }
 

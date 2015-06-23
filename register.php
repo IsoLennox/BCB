@@ -51,10 +51,21 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
          $(document).ready(function() {
           $("#username").keyup(function(e) {
             var username = $(this).val();
-            $.ajax({
-              url: "validation.php?new_username="+username}).done(function(data) {
-                $("#username_result").html(data);
+            if (username == "") {
+              $("#username_result").html("");
+            } else {
+              $.ajax({
+                url: "validation.php?new_username="+username,
+                dataType: "text"}).done(function(valid) {
+                  if (valid == "valid") {
+                    $("#username_result").html("<span class=\"available\">Available!</span>");
+                    $("input[type=submit]").attr("disabled", false);
+                  } else {
+                    $("#username_result").html("<span class=\"taken\">Already a smoker</span>");
+                    $("input[type=submit]").attr("disabled", true);
+                  }
               });
+            }
           });
        });
        </script>
