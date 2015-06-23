@@ -36,6 +36,17 @@ $username = $_GET['username'];
      
 }//end validate username
 
+if(isset($_GET['new_username'])) {
+    $new_username = $_GET['new_username'];
+    $sql = "SELECT * FROM users WHERE username='{$new_username}'";
+    $result = mysqli_query($connection, $sql);
+    if (mysqli_num_rows($result)<1) {
+        echo "<span class=\"available\">Available!</span>";
+    } else {
+        echo "<span class=\"taken\">Already a smoker</span>";
+    }
+}
+
 
 if(isset($_GET['forgotemail'])){
     

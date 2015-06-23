@@ -41,19 +41,23 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
       <form action="#" method="POST">
        <!-- <p> -->
        <input type="text" name="username" id="username" placeholder="USERNAME">
-       <script>
-        $("#username").keyup(function(e) {
-          var username = $(this).val();
-          $.post("check_available.php", {"username":username}, function(data) {
-              $("#username_result").html(data);
-            });
-        });
-       </script>
+
        <span id="username_result"></span>
        <!-- </p> -->
        <input type="password" name="password" placeholder="PASSWORD">
        <input type="password" name="confirmpassword" placeholder="CONFIRM PASSWORD">
-       <input type="submit" name="login" value="Smoke">
+       <input type="submit" id="submit" name="login" value="Smoke">
+       <script>
+         $(document).ready(function() {
+          $("#username").keyup(function(e) {
+            var username = $(this).val();
+            $.ajax({
+              url: "validation.php?new_username="+username}).done(function(data) {
+                $("#username_result").html(data);
+              });
+          });
+       });
+       </script>
    </form>
    
       <a id="smoke_script" href="login.php">Cancel</a>
