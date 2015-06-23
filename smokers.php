@@ -85,30 +85,74 @@ if(isset($_GET['remove'])){
    
  
 ?>
-   
-   
+   <br/>
+   <hr/>
+   <br/>
     <h2>Add A Smoker</h2>
-     <form action="#">
-            <input onkeyup="findFriend(); return false;" name="username" id="username" type="text" placeholder="SEARCH USERS"> 
+     <form action="smokers.php" method="POST">
+<!--            <input onkeyup="findFriend(); return false;" name="username" id="username" type="text" placeholder="SEARCH USERS"> -->
+            <input name="username" id="username" type="text" placeholder="SEARCH USERS"> 
+            <input type="submit" name="find" value="Find Smoker">
         </form> 
-      <div id="eavailability"></div>
+        <br>
+        <br>
+        <br>
+<!--      <div id="eavailability"></div>-->
+      
+      <?php
+        if(isset($_POST['find'])){
+            
+            $username = $_POST['username'];
+  
+        //Checks if the username is available or not
+        $query = "SELECT * FROM users WHERE username = '$username'";
+        $result = mysqli_query($connection, $query);
+        //Prints the result
+        if (mysqli_num_rows($result)<1) {
+            echo "<span class='green'>No Users With That Username</span>";
+           
+        }else{
+            $user=mysqli_fetch_assoc($result); 
+            $this_user = "SELECT * FROM friends WHERE user_id={$_SESSION['user_id']} AND friend_id={$user['id']}";
+            $this_user_result = mysqli_query($connection, $this_user);
+            if($this_user_result){
+                $rows=mysqli_num_rows($this_user_result);
+                if($rows >=1){
+                    $add="";
+                }else{
+                $add="<a href=\"smokers.php?add=".$user['id']."\"><i class=\"fa fa-user-plus\"></i></a>";
+                }
+            }else{
+                $add="<a href=\"smokers.php?add=".$user['id']."\"><i class=\"fa fa-user-plus\"></i></a>";
+            }
+        
+        
+             echo "<label class=\"smokers\">".$username."</label>".$add."<br/>";
+           
+        }
+            
+            
+        
+        
+        }
+        ?>
     </div>
     <script>
          
-        function findFriend(){
-               $(document).ready(function () {
-            $("#username").keyup(function () {
-              var username = $(this).val();
-                $.ajax({
-                  url: "validation.php?username="+username
-                }).done(function( data ) {
-                  $("#eavailability").html(data);
-                });   
-
-            });
-          });
-
-        }         
+//        function findFriend(){
+//               $(document).ready(function () {
+//            $("#username").keyup(function () {
+//              var username = $(this).val();
+//                $.ajax({
+//                  url: "validation.php?username="+username
+//                }).done(function( data ) {
+//                  $("#eavailability").html(data);
+//                });   
+//
+//            });
+//          });
+//
+//        }         
     </script>
  
   

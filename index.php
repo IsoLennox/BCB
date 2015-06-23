@@ -208,7 +208,7 @@ echo "<div id=\"days\">
    <header>
     <a class="left username" href="profile.php"><?php echo $_SESSION['username']; ?></a>
     <a class="logout" href="logout.php">Logout</a>
-    <h1>Break The Camel's Back</h1>
+    <h1 id="ashtray">Break The Camel's Back</h1>
     </header> 
     <div id="page">
     <div id="add_cig">

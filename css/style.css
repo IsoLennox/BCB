@@ -34,7 +34,7 @@ header h1 {
 /*    font-family: 'Carme', sans-serif;*/
 }
 
-.smokers{ font-size: 30px;}
+
 
 a:hover {color: orange;}
 
@@ -42,11 +42,11 @@ a:hover {color: orange;}
 .red {color: firebrick;}
 
 #days {
-    height: 150px; 
+    height: 120px; 
 }
 
 #days a {
-    font-size: 80px;
+    font-size: 60px;
 }
 #days span {
 /*    border: 1px solid white;*/
@@ -88,7 +88,7 @@ h4 {
 }
 #ashtray {
     font-family: 'Special Elite', cursive;
-    margin-top: 30px;
+    margin-top: 80px;
 }
 
 a {
@@ -108,7 +108,7 @@ a {
     clear: both;
     margin: 0 auto;
     overflow: hidden;
-    width: 650px;
+    width: 1050px;
 }
 
 .container h3 {
@@ -125,10 +125,10 @@ a {
     margin-bottom: 50px;
     margin: 0 auto;
     font-size: 40px;
-    padding: 10px;
-
-    
+    padding: 10px;   
 }
+
+.smokers{ font-size: 80px;}
 
 #add_cig{ 
     font-size: 75px;
@@ -232,4 +232,8 @@ input[type="submit"]{
     #add_cig, input[type="submit"]{
     font-size: 25px;
     }
+    .container{
+    width: 450px;
+}
+    .smokers{ font-size: 30px;}
 }
