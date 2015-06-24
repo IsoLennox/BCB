@@ -22,4 +22,4 @@ confirm_logged_in();
     -->
 </head>
 <body>
-   <?php echo message(); ?> 
+ 

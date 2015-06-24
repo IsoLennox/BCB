@@ -27,6 +27,7 @@ echo "<div id=\"days\">
     </div>
     </header>
     <div id=\"page\">";
+      echo message(); 
         	 echo "NOT WORKING";
 
     }elseif(isset($_GET['month'])){
@@ -36,7 +37,9 @@ echo "<div id=\"days\">
         <span><a href=\"index.php?ashtray\">Day</a></span>
         <span id=\"current\"><a href=\"index.php?ashtray&month\">Month</a></span>
         <span><a href=\"smokers.php\">Smokers</a></span>
-    </div> </header><div id=\"page\">"; 
+    </div> </header><div id=\"page\">";
+        
+    echo message(); 
     $sql = "SELECT * FROM log GROUP BY year, month ORDER BY year DESC, month DESC, day DESC";
 	$result = mysqli_query($connection, $sql);
  
@@ -70,6 +73,8 @@ echo "<div id=\"days\">
         <span><a href=\"index.php?ashtray&month\">Month</a></span>
         <span><a href=\"smokers.php\">Smokers</a></span>
     </div> </header><div id=\"page\">";
+        
+    echo message(); 
 //DAY VIEW
     $sql = "SELECT * FROM log GROUP BY year, month, day ORDER BY year DESC, month DESC, day DESC";
 	$result = mysqli_query($connection, $sql);
@@ -211,6 +216,8 @@ echo "<div id=\"days\">
     <h1 id="ashtray">Break The Camel's Back</h1>
     </header> 
     <div id="page">
+    
+   <?php echo message(); ?>
     <div id="add_cig">
     <form method="POST" action="index.php?add" >
         <label> <?php echo $_SESSION['username']; ?></label><br/> 

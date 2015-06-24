@@ -35,10 +35,22 @@ header h1 {
 }
 
 
+.message {
+    text-align: center;
+    background: #222;
+    width: 200px;
+    margin: 0 auto;
+    border-radius: 10px;
+    padding: 10px;
+    color: orange;
+    font-weight: 600;
+    font-size: 19px;
+}
 
 a:hover {color: orange;}
 
 .orange{ background: rgba(235,122,0,.4)}
+.orange_text, .fa-user-plus{ color: orange; font-weight: 600; }
 .red {color: firebrick;}
 
 #days {
@@ -188,11 +200,11 @@ input[type="submit"]{
 }
 
 #smoke_script {font-family: 'Flavors', cursive; }
-#smoke_script, #cancel, .fa-user-plus {
+#smoke_script, #cancel {
     color: dimgray;
 }
 #cancel { font-family: 'Carme', sans-serif; }
-#cancel, #smoke_script:hover, .fa-user-plus { color: #222; }
+#cancel, #smoke_script:hover, .fa-user-plus:hover { color: #222; }
 
 
 @media(min-width: 1000px) { 

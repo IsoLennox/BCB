@@ -55,16 +55,16 @@ if(isset($_GET['remove'])){
             $this_user = "DELETE FROM friends WHERE user_id={$_SESSION['user_id']} AND friend_id={$user_id} LIMIT 1";
             $this_user_result = mysqli_query($connection, $this_user);
             if($this_user_result){
-//                $_SESSION["message"] = "Smoker Removed"; 
+                $_SESSION["message"] = "Smoker Removed"; 
                 redirect_to("smokers.php");
 
             }else{
-//                $_SESSION["message"] = "Can't remove this smoker"; 
+                $_SESSION["message"] = "Can't remove this smoker"; 
                 redirect_to("smokers.php");
             }
 
 }//END REMOVE
- 
+     echo message();  
     $sql = "SELECT * FROM friends WHERE user_id={$_SESSION['user_id']}";
 	$result = mysqli_query($connection, $sql);
     if($result){
@@ -118,7 +118,7 @@ if(isset($_GET['remove'])){
             if($this_user_result){
                 $rows=mysqli_num_rows($this_user_result);
                 if($rows >=1){
-                    $add="";
+                    $add=" <span class=\"orange_text\">is your friend</span>";
                 }else{
                 $add="<a href=\"smokers.php?add=".$user['id']."\"><i class=\"fa fa-user-plus\"></i></a>";
                 }
