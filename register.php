@@ -8,14 +8,16 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
   //validation
   $username = mysql_prep($_POST["username"]);
-  // $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
-  $password = $_POST["password"];
-  $confirm_password = $_POST["confirm_password"];
+  $password = mysql_prep($_POST["password"]);
+  $confirm_password = mysql_prep($_POST["confirm_password"]);
 
   $required_fields = ["username", "password", "confirm_password"];
   validate_presences($required_fields);
 
+  validate_confirm_password($password, $confirm_password);
+
   if (empty($errors)) {
+    $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
     $sql = "INSERT INTO users (username, password) VALUES ('{$username}', '{$password}')";
 
     $result = mysqli_query($connection, $sql);

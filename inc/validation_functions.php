@@ -25,6 +25,13 @@ function validate_presences($required_fields) {
   }
 }
 
+function validate_confirm_password($password, $confirm_password) {
+  global $errors;
+  if (strcmp($password, $confirm_password) !== 0) {
+    $errors["Confirm Password"] = "Passwords do not match";
+  }
+}
+
 
 function validate_username_unique($prospect_username) {
     global $errors;
