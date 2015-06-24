@@ -1,24 +1,36 @@
 <?php require_once("inc/session.php");
 require_once("inc/functions.php");
+require_once ("inc/validation_functions.php");
 include('inc/db_connection.php');
  
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-  echo "posted";
-  $username = $_POST["username"];
-  $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
 
-  $sql = "INSERT INTO users (username, password) VALUES ('{$username}', '{$password}')";
+  //validation
+  $username = mysql_prep($_POST["username"]);
+  // $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
+  $password = $_POST["password"];
+  $confirm_password = $_POST["confirm_password"];
 
-  $result = mysqli_query($connection, $sql);
+  $required_fields = ["username", "password", "confirm_password"];
+  validate_presences($required_fields);
 
-  if ($result) {
-    //success
-    $_SESSION["message"] = "Smoker created";
-    redirect_to("login.php");
+  if (empty($errors)) {
+    $sql = "INSERT INTO users (username, password) VALUES ('{$username}', '{$password}')";
+
+    $result = mysqli_query($connection, $sql);
+
+    if ($result) {
+      //success
+      $_SESSION["message"] = "Smoker created";
+      redirect_to("login.php");
+    } else {
+      //failure
+      $_SESSION["message"] = "Smoker creation failed";
+      redirect_to("register.php");
+    }
   } else {
-    //failure
-    $_SESSION["message"] = "Smoker creation failed";
+    $_SESSION["errors"] = $errors;
     redirect_to("register.php");
   }
 }
@@ -38,36 +50,39 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
   <div id="page" class="container login">
    <h1><label for="New Smoker">New Smoker</label></h1>
    <?php echo message(); ?>
+   <?php 
+      $errors = errors();
+      echo form_errors($errors);
+     ?>
       <form action="#" method="POST">
        <!-- <p> -->
        <input type="text" name="username" id="username" placeholder="USERNAME">
 
        <span id="username_result"></span>
        <!-- </p> -->
-       <input type="password" name="password" placeholder="PASSWORD">
-       <input type="password" name="confirmpassword" placeholder="CONFIRM PASSWORD">
+       <input type="password" name="password" id="password" placeholder="PASSWORD">
+       <input type="password" id="confirm_password" name="confirm_password" placeholder="CONFIRM PASSWORD">
        <input type="submit" id="submit" name="login" value="Smoke">
        <script>
          $(document).ready(function() {
           $("#username").keyup(function(e) {
             var username = $(this).val();
+
             if (username == "") {
               $("#username_result").html("");
             } else {
               $.ajax({
                 url: "validation.php?new_username="+username,
-                dataType: "text"}).done(function(valid) {
-                  if (valid == "valid") {
+                dataType: "text"}).done(function(available) {
+                  if (available == "valid") {
                     $("#username_result").html("<span class=\"available\">Available!</span>");
-                    $("input[type=submit]").attr("disabled", false);
                   } else {
                     $("#username_result").html("<span class=\"taken\">Already a smoker</span>");
-                    $("input[type=submit]").attr("disabled", true);
-                  }
-              });
-            }
-          });
-       });
+                  } //end else
+              }); //end .done()
+            } //end else
+          }); //end keyup
+       }); //end document ready
        </script>
    </form>
    
