@@ -185,6 +185,7 @@ input[type="submit"]{
 .login a {
     text-align: center;
     margin: 20px;
+    margin: 20px;
     font-size: 60px;
 }
 
@@ -220,7 +221,9 @@ input[type="submit"]{
 #cancel { font-family: 'Carme', sans-serif; }
 #cancel, #smoke_script:hover, .fa-user-plus:hover { color: #222; }
 
- 
+#add_cig p {
+    padding: 20px;
+}
 
 
 @media(min-width: 1000px) { 

@@ -35,8 +35,28 @@ if(isset($_GET['add'])){
 
                     if ($cigarette_added) { 
                         // Success
-//                        $_SESSION["message"] = "Smoker Added!"; 
-                        redirect_to("smokers.php");
+//                        //NOTIFY SMOKER
+                        $content= $_SESSION['username']." added you! <a href=\"smokers.php?add=".$_SESSION['user_id']."\"><i class=\"fa fa-user-plus\"></i></a> ";
+                                $new_alert  = "INSERT INTO alerts (";
+                                $new_alert .= "user_id, content ";
+                                $new_alert .= ") VALUES (";
+                                $new_alert .= " {$user_id}, '{$content}'";
+                                $new_alert .= ") ";
+                                $cigarette_added = mysqli_query($connection, $new_alert);
+
+
+                                if ($cigarette_added) { 
+                                    // Success
+                                    redirect_to("smokers.php");
+                                } else {
+                                    // Failure
+                                     $_SESSION["message"] = "Added Smoker! Could not notify them";
+                                   redirect_to("smokers.php");
+                                }//END UPDATE TODAYS LOG
+                        
+                         
+                        
+                        
                     } else {
                         // Failure
                         $_SESSION["message"] = "This smoker could not join you";
@@ -55,8 +75,28 @@ if(isset($_GET['remove'])){
             $this_user = "DELETE FROM friends WHERE user_id={$_SESSION['user_id']} AND friend_id={$user_id} LIMIT 1";
             $this_user_result = mysqli_query($connection, $this_user);
             if($this_user_result){
-                $_SESSION["message"] = "Smoker Removed"; 
-                redirect_to("smokers.php");
+                
+                
+                //                        //NOTIFY SMOKER
+                                $content= $_SESSION['username']." removed you!";
+                                $new_alert  = "INSERT INTO alerts (";
+                                $new_alert .= "user_id, content ";
+                                $new_alert .= ") VALUES (";
+                                $new_alert .= " {$user_id}, '{$content}'";
+                                $new_alert .= ") ";
+                                $cigarette_added = mysqli_query($connection, $new_alert);
+
+
+                                if ($cigarette_added) { 
+                                    // Success
+                                    $_SESSION["message"] = "Smoker Removed"; 
+                                    redirect_to("smokers.php");
+                                } else {
+                                    // Failure
+                                     $_SESSION["message"] = "Removed Smoker with stealth!";
+                                   redirect_to("smokers.php");
+                                }//END UPDATE TODAYS LOG
+                
 
             }else{
                 $_SESSION["message"] = "Can't remove this smoker"; 

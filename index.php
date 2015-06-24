@@ -1,5 +1,17 @@
 <?php include('inc/header.php');
 
+
+if(isset($_GET['remove_notification'])){
+    
+    $remove_alert = "DELETE FROM alerts WHERE id={$_GET['remove_notification']} LIMIT 1";
+    $remove_alert_result = mysqli_query($connection, $remove_alert);
+    if($remove_alert_result){
+        redirect_to('index.php');
+    }
+    
+    
+}
+
 if(isset($_GET['ashtray'])){
     
     //<span><a href=\"index.php?ashtray&week\">Week</a></span> 
@@ -47,20 +59,23 @@ echo "<div id=\"days\">
         foreach ($result as $row) { 
             
             //seelct all where month and year == this , count++
-    $total_sql = "SELECT * FROM log WHERE month='{$row['month']}' and year={$row['year']}";
+    $total_sql = "SELECT * FROM log WHERE month='{$row['month']}' and year={$row['year']} AND user_id={$_SESSION['user_id']}";
 	$total_result = mysqli_query($connection, $total_sql);
-            $rosemary_total=0;
-            $isobel_total=0;
+            $total_total=0; 
             foreach($total_result as $this_row){
-            $rosemary_total=$rosemary_total+$this_row['rosemary'];
-            $isobel_total=$isobel_total+$this_row['isobel'];
-            }
+            $total_total=$total_total+$this_row['total']; 
+            } 
            
             echo "<div class=\"container\">";
             echo "<h3>" . $row["month"] .  " " . $row["year"] . "</h3>";
-            echo "<span class=\"half\"><h4>Rosemary</h4> <h1>" . $rosemary_total . "</h1></span>";
-            echo "<span class=\"half\"><h4>Isobel</h4> <h1>" . $isobel_total . "</h1></span>";
+            echo "<span class=\"half\"><h4>Total</h4> <h1>" . $total_total . "</h1></span>";
+            $packs=$total_total/20;
+            echo "<span class=\"half\"><h4>Packs</h4> <h1>" . $packs . "</h1></span>";
             echo "</div>";  
+            
+            //GET FRIENDS ..
+            
+            
         }//END FOREACH
         echo " </div>"; // end #page
         
@@ -227,6 +242,29 @@ echo "<div id=\"days\">
     <br/>
     <br/>
     <a id="view_ashtray" href="index.php?ashtray">View Ashtray</a>
+    
+    <br>
+    <br>
+    
+    <p>
+        <h2>Notifications</h2>
+        <?php
+    $get_alerts = "SELECT * FROM alerts WHERE user_id={$_SESSION['user_id']} ORDER BY id DESC";
+    $alerts_found = mysqli_query($connection, $get_alerts); 
+    if($alerts_found){
+        echo "<ul>";
+        foreach($alerts_found as $alert){
+            echo "<li><label>".$alert['content']."</label> <a href=\"index.php?remove_notification=".$alert['id']."\"><i class=\"fa fa-times red\"></i></a></li>";
+        }
+        echo "</ul>"; 
+    
+    }
+    ?>
+        
+            
+       
+    </p>
+    
     </div>
     </div>
     
