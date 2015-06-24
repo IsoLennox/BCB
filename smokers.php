@@ -113,7 +113,7 @@ if(isset($_GET['remove'])){
         echo "<div class=\"container\">";
         foreach ($result as $row) {
             $user=find_user_by_user_id($row['friend_id']);
-            echo "<label class=\"smokers\">".$user['username']."</label><a href=\"smokers.php?remove=".$user['id']."\"><i class=\"fa fa-times red\"></i></a><br/>";
+            echo "<span class=\"smoker_list\"><label class=\"smokers\">".$user['username']."</label><a href=\"smokers.php?remove=".$user['id']."\"><i class=\"fa fa-times red\"></i></a></span><br/>";
         }//END FOREACH
         echo "</div>";
         }else{

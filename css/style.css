@@ -121,7 +121,10 @@ a {
     clear: both;
     margin: 0 auto;
     overflow: hidden;
-    width: 1050px;
+    width: 700px;
+    font-size: 20px;
+    word-wrap: break-word;
+    
 }
 
 .container h3 {
@@ -139,9 +142,14 @@ a {
     margin: 0 auto;
     font-size: 40px;
     padding: 10px;   
+    overflow: hidden;
 }
 
-.smokers{ font-size: 80px;}
+.smokers{ font-size: 40px;}
+.smoker_list {
+   line-height: 1.4;
+    font-size: 90%;
+}
 
 #add_cig{ 
     font-size: 75px;
@@ -264,15 +272,21 @@ input[type="submit"]{
     font-size: 25px;
     }
     .container{
-    width: 450px;
+    width: 550px;
 }
     .smokers{ font-size: 30px;}
     
     
     
 .login{
-    width: 400px;
+   width: 500px;
+word-wrap: break-word;
 }
+    .login form{
+    width: 400px;
+        text-align: center;
+        margin: 0 auto;
+    }
     
     .login h1 { 
     font-size: 60px;
