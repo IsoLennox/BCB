@@ -36,7 +36,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <link href='http://fonts.googleapis.com/css?family=Special+Elite|Carme|Flavors' rel='stylesheet' type='text/css'>
 </head>
 <body>
+ <header>
+      <h1 id="ashtray">Break The Camel's Back</h1>
+ </header>
   <div id="page" class="container login">
+  
    <h1><label for="Login">Login</label></h1>
    <?php echo message(); ?>
    <form class="login" action="#" method="POST">
@@ -44,8 +48,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
        <input type="password" name="password" placeholder="PASSWORD">
        <input type="submit" name="login" value="Smoke">
    </form>
-     
-   <a id="smoke_script" href="register.php">New Smoker</a>
+     <br>
+     <br>
+     <br>
+ <a id="smoke_script" href="register.php">New Smoker</a> 
      
     </div>
 </body>
