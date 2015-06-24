@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
      ?>
       <form action="#" method="POST">
        <!-- <p> -->
-       <input type="text" name="username" id="username" placeholder="USERNAME">
+       <input type="text" maxlength="15" name="username" id="username" placeholder="USERNAME">
 
        <span id="username_result"></span>
        <!-- </p> -->
