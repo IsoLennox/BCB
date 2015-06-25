@@ -58,9 +58,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
      ?>
       <form action="#" method="POST">
        <!-- <p> -->
-       <input type="text" maxlength="15" name="username" id="username" placeholder="USERNAME">
 
-       <span id="username_result"></span>
+       <input type="text" maxlength="15" autocomplete="off" name="username" id="username" placeholder="USERNAME">
+
+       <div id="username_result">
+        <div class="need_username">Username required</div>
+         <div class="available">Available!</div>
+         <div class="taken">Already a smoker</div>
+       </div>
+
        <!-- </p> -->
        <input type="password" name="password" id="password" placeholder="PASSWORD">
        <input type="password" id="confirm_password" name="confirm_password" placeholder="CONFIRM PASSWORD">
@@ -70,16 +76,21 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
           $("#username").keyup(function(e) {
             var username = $(this).val();
 
+            $("#username_result").css("height","43px");
+
             if (username == "") {
-              $("#username_result").html("");
+              $(".available, .taken").fadeOut();
+              $(".need_username").fadeIn();
             } else {
               $.ajax({
                 url: "validation.php?new_username="+username,
                 dataType: "text"}).done(function(available) {
                   if (available == "valid") {
-                    $("#username_result").html("<span class=\"available\">Available!</span>");
+                    $(".need_username, .taken").fadeOut();
+                    $("div.available").fadeIn();
                   } else {
-                    $("#username_result").html("<span class=\"taken\">Already a smoker</span>");
+                    $(".available, .need_username").fadeOut();
+                    $("div.taken").fadeIn();
                   } //end else
               }); //end .done()
             } //end else

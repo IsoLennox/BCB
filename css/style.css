@@ -174,7 +174,7 @@ input[type="submit"]{
 .login{
     width: 100%;
     text-align: center;
-    
+    position: relative;
 }
 
 .login h1 { 
@@ -197,11 +197,19 @@ input[type="submit"]{
     font-size: 60px;
 }
 
+#username_result {
+    margin: 0 auto;
+    position: relative;
+    height: 0;
+    width: 210px;
+    transition: height .7s ease;
+}
 
-
-.available, .taken {
+.available, .taken, .need_username {
     padding: 10px;
-
+    width: 190px;
+    position: absolute;
+    display: none;
 }
 
 .available {
@@ -211,6 +219,11 @@ input[type="submit"]{
 
 .taken {
     background: orange;
+}
+
+.need_username {
+    background: #222;
+    color: orange;
 }
 
 #view_ashtray{
