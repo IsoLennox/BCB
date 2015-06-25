@@ -8,17 +8,18 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
   //validation
   $username = mysql_prep($_POST["username"]);
+  $email = mysql_prep($_POST["email"]);
   $password = mysql_prep($_POST["password"]);
   $confirm_password = mysql_prep($_POST["confirm_password"]);
 
-  $required_fields = ["username", "password", "confirm_password"];
+  $required_fields = ["username", "email", "password", "confirm_password"];
   validate_presences($required_fields);
 
   validate_confirm_password($password, $confirm_password);
 
   if (empty($errors)) {
     $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
-    $sql = "INSERT INTO users (username, password) VALUES ('{$username}', '{$password}')";
+    $sql = "INSERT INTO users (username, password, email) VALUES ('{$username}', '{$password}', '{$email}')";
 
     $result = mysqli_query($connection, $sql);
 
@@ -57,7 +58,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
       echo form_errors($errors);
      ?>
       <form action="#" method="POST">
-       <!-- <p> -->
 
        <input type="text" maxlength="15" autocomplete="off" name="username" id="username" placeholder="USERNAME">
 
@@ -67,7 +67,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
          <div class="taken">Already a smoker</div>
        </div>
 
-       <!-- </p> -->
+      <input type="email" maxlength="40" autocomplete="off" name="email" id="email" placeholder="EMAIL">
+
        <input type="password" name="password" id="password" placeholder="PASSWORD">
        <input type="password" id="confirm_password" name="confirm_password" placeholder="CONFIRM PASSWORD">
        <input type="submit" id="submit" name="login" value="Smoke">
