@@ -151,6 +151,7 @@ a {
     font-size: 40px;
     padding: 10px;   
     overflow: hidden;
+    height: 280px;
 }
 
 .smokers{ font-size: 40px;}
