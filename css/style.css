@@ -254,6 +254,18 @@ input[type="submit"]{
     padding: 20px;
 }
 
+.left_list {
+    text-align: left;
+    width: 800px;
+    margin: 0px auto;
+    position: relative;
+    top: -250px;
+}
+.see_all {
+    font-size: 50px; 
+    text-align: center;
+}
+
 
 @media(min-width: 1000px) { 
     
