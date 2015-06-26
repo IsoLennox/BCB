@@ -49,6 +49,18 @@ if(isset($_GET['new_username'])) {
     }
 }
 
+if(isset($_GET['new_email'])) {
+    $new_email = $_GET['new_email'];
+    $sql = "SELECT * FROM users WHERE email='{$new_email}'";
+    $result = mysqli_query($connection, $sql);
+    if (mysqli_num_rows($result)<1) {
+        echo "valid";
+        return;
+    } else {
+        echo "taken";
+        return;
+    }
+}
 
 if(isset($_GET['forgotemail'])){
     

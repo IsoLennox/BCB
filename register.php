@@ -6,15 +6,21 @@ include('inc/db_connection.php');
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-  //validation
   $username = mysql_prep($_POST["username"]);
   $email = mysql_prep($_POST["email"]);
   $password = mysql_prep($_POST["password"]);
   $confirm_password = mysql_prep($_POST["confirm_password"]);
 
+  //---validation---//
+    //check if all required fields are provided
   $required_fields = ["username", "email", "password", "confirm_password"];
   validate_presences($required_fields);
 
+    //Check if username or email already exist in the database
+  validate_username_unique($username);
+  validate_email_unique($email);
+
+    //Check if password fields match
   validate_confirm_password($password, $confirm_password);
 
   if (empty($errors)) {
@@ -67,10 +73,17 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
       <input type="email" maxlength="40" autocomplete="off" name="email" id="email" placeholder="EMAIL">
 
+      <div id="email_result">
+       <div class="need_email">Email required</div>
+        <div class="available">Available!</div>
+        <div class="taken">Already a smoker</div>
+      </div>
+
        <input type="password" name="password" id="password" placeholder="PASSWORD">
        <input type="password" id="confirm_password" name="confirm_password" placeholder="CONFIRM PASSWORD">
        <input type="submit" id="submit" name="login" value="Smoke">
        <script src="js/check_username.js"></script>
+       <script src="js/check_email.js"></script>
    </form>
    
       <a id="smoke_script" href="login.php">Cancel</a>
