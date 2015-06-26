@@ -213,7 +213,7 @@ input[type="submit"]{
     transition: height .7s ease;
 }
 
-.available, .taken, .need_username {
+.available, .taken, .need_username, .need_email {
     padding: 10px;
     width: 190px;
     position: absolute;
@@ -229,7 +229,7 @@ input[type="submit"]{
     background: orange;
 }
 
-.need_username {
+.need_username, .need_email {
     background: #222;
     color: orange;
 }
