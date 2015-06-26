@@ -25,6 +25,13 @@ function validate_presences($required_fields) {
   }
 }
 
+function validate_characters($string, $fieldname) {
+  global $errors;
+  if (!preg_match('/^[a-zA-Z0-9_\.]*$/', $string)) {
+    $errors[$fieldname] = fieldname_as_text($fieldname) . " contains invalid characters";
+  }
+}
+
 function validate_confirm_password($password, $confirm_password) {
   global $errors;
   if (strcmp($password, $confirm_password) !== 0) {

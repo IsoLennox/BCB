@@ -17,6 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
   validate_confirm_password($password, $confirm_password);
 
+  validate_characters($username, "username");
+
   validate_username_unique($username);
   validate_email_unique($email);
 
