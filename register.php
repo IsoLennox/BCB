@@ -6,22 +6,22 @@ include('inc/db_connection.php');
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-  //validation
   $username = mysql_prep($_POST["username"]);
   $email = mysql_prep($_POST["email"]);
   $password = mysql_prep($_POST["password"]);
   $confirm_password = mysql_prep($_POST["confirm_password"]);
 
+  //---validation---//
+    //check if all required fields are provided
   $required_fields = ["username", "email", "password", "confirm_password"];
   validate_presences($required_fields);
 
-  validate_confirm_password($password, $confirm_password);
-
-  validate_characters($username, "username");
-  validate_characters($email, "email");
-
+    //Check if username or email already exist in the database
   validate_username_unique($username);
   validate_email_unique($email);
+
+    //Check if password fields match
+  validate_confirm_password($password, $confirm_password);
 
   if (empty($errors)) {
     $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
@@ -77,7 +77,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
        <div class="need_email">Email required</div>
         <div class="available">Available!</div>
         <div class="taken">Already a smoker</div>
-        <!-- <div class="invalid">Invalid</div> -->
       </div>
 
        <input type="password" name="password" id="password" placeholder="PASSWORD">
