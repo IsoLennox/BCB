@@ -205,7 +205,7 @@ input[type="submit"]{
     font-size: 60px;
 }
 
-#username_result {
+#username_result, #email_result {
     margin: 0 auto;
     position: relative;
     height: 0;
