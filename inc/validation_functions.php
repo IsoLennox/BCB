@@ -33,30 +33,29 @@ function validate_confirm_password($password, $confirm_password) {
 }
 
 
-function validate_username_unique($prospect_username) {
+function validate_username_unique($new_username) {
     global $errors;
     global $connection;
-    
-    $check_username  = "SELECT * FROM customers WHERE username = '{$prospect_username}'";
+
+    $check_username  = "SELECT * FROM users WHERE username = '{$new_username}'";
     $username_checked = mysqli_query($connection, $check_username);
-    
-        confirm_query($username_checked);
-    return $username_checked;
-    
-     $username_array=mysqli_fetch_assoc($username_checked);
-    
- foreach($username_checked as $field) {
-        if (!empty($username_array)) {
-       $errors[$field] = "USERNAME TAKEN!";
-       // $_SESSION["message"] = "Username Taken!";
-        }
-    }    
+
+    if (mysqli_num_rows($username_checked) != 0) {
+      $errors["Username"] = "This username is taken";
+    }
 }
 
 
-function validate_email_unique($required_fields) {
-    
- //
+function validate_email_unique($new_email) {
+  global $errors;
+  global $connection;
+
+  $check_username  = "SELECT * FROM users WHERE username = '{$new_username}'";
+  $username_checked = mysqli_query($connection, $check_username);
+
+  if (mysqli_num_rows($username_checked) != 0) {
+    $errors["Username"] = "This username is taken";
+  }
 }
 
 

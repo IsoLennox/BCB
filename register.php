@@ -17,6 +17,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
   validate_confirm_password($password, $confirm_password);
 
+  validate_username_unique($username);
+  // validate_email_unique($email);
+
   if (empty($errors)) {
     $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
     $sql = "INSERT INTO users (username, password, email) VALUES ('{$username}', '{$password}', '{$email}')";
