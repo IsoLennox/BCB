@@ -5,18 +5,18 @@ $(document).ready(function() {
    $("#email_result").css("height","43px");
 
    if (email == "") {
-     $(".available, .taken").fadeOut();
+     $("#email_result .available, #email_result .taken").fadeOut();
      $(".need_email").fadeIn();
    } else {
      $.ajax({
        url: "validation.php?new_email="+email,
        dataType: "text"}).done(function(available) {
          if (available == "valid") {
-           $(".need_email, .taken").fadeOut();
-           $("div.available").fadeIn();
+           $(".need_email, #email_result .taken").fadeOut();
+           $("#email_result div.available").fadeIn();
          } else {
-           $(".available, .need_email").fadeOut();
-           $("div.taken").fadeIn();
+           $("#email_result .available, .need_email").fadeOut();
+           $("#email_result div.taken").fadeIn();
          } //end else
      }); //end .done()
    } //end else

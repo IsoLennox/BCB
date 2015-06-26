@@ -1,6 +1,9 @@
 $(document).ready(function() {
  $("#username").keyup(function(e) {
    var username = $(this).val();
+   var user_available = $("#username_result div.available");
+   var taken = $("#username_result .taken");
+   var needed = $("#username_result .need_username");
 
    $("#username_result").css("height","43px");
 
@@ -12,11 +15,11 @@ $(document).ready(function() {
        url: "validation.php?new_username="+username,
        dataType: "text"}).done(function(available) {
          if (available == "valid") {
-           $(".need_username, .taken").fadeOut();
-           $("div.available").fadeIn();
+           $(needed, taken).fadeOut();
+           user_available.fadeIn();
          } else {
-           $(".available, .need_username").fadeOut();
-           $("div.taken").fadeIn();
+           $(user_available, needed).fadeOut();
+           $(taken).fadeIn();
          } //end else
      }); //end .done()
    } //end else
