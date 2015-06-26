@@ -169,14 +169,53 @@ if(isset($_GET['remove'])){
         
              echo "<label class=\"smokers\">".$username."</label>".$add."<br/>";
            
-        }
-            
-            
-        
-        
-        }
+            } 
+        } 
+
         ?>
     </div>
+    
+    <?php
+
+        if(isset($_GET['all'])){ 
+   
+        $query = "SELECT * FROM users ORDER BY username";
+        $result = mysqli_query($connection, $query);
+        //Prints the result
+            if (mysqli_num_rows($result)<1) {
+                echo "<span class='green'>No Smokers</span>";
+
+            }else{
+                echo "<div class=\"left_list\">";
+                foreach($result as $user){
+                $this_user = "SELECT * FROM friends WHERE user_id={$_SESSION['user_id']} AND friend_id={$user['id']}";
+                $this_user_result = mysqli_query($connection, $this_user);
+                if($this_user_result){
+                    $rows=mysqli_num_rows($this_user_result);
+                    if($rows >=1){
+                        $add=" <span class=\"orange_text\">is your friend</span>";
+                    }else{
+                    $add="<a href=\"smokers.php?add=".$user['id']."\"><i class=\"fa fa-user-plus\"></i></a>";
+                    }
+                }else{
+                    $add="<a href=\"smokers.php?add=".$user['id']."\"><i class=\"fa fa-user-plus\"></i></a>";
+                }
+
+
+                 echo "<label class=\"smokers\">".$user['username']."</label>".$add."<br/>";
+                }
+                echo "</div>";
+            }
+            
+            
+        
+        
+        }else{
+        
+            echo "<div class=\"left_list see_all\"><a id=\"smoke_script\" href=\"smokers.php?all\">All Smokers</a></div>";
+        }
+
+?>
     <script>
          
 //        function findFriend(){
