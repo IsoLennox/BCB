@@ -7,7 +7,7 @@
     <a href="index.php">&laquo; Smoke One</a>
    <div id="days">
         <span><a href="index.php?ashtray">Day</a></span> 
-        <span><a href="index.php?ashtray&month">Month</a></span>
+        <span><a href="index.php?ashtray&month">Packs</a></span>
         <span id="current"><a href="smokers.php">Smokers</a></span>
     </div> 
 <!--    -->

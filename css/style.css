@@ -267,6 +267,11 @@ input[type="submit"]{
     text-align: center;
 }
 
+.forgot_pass {
+    font-size: 16px;
+    color: orange;
+}
+
 
 @media(min-width: 1000px) { 
     
@@ -341,6 +346,10 @@ word-wrap: break-word;
     font-size: 30px;
 }
 
+    .forgot_pass {
+    font-size: 16px;
+    color: darkgoldenrod;
+}
     
     
     

@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
       redirect_to("login.php");
     } else {
       //failure
-      $_SESSION["message"] = "Smoker creation failed";
+      $_SESSION["message"] = "Could Not Let You Smoke";
       redirect_to("register.php");
     }
   } else {

@@ -34,7 +34,7 @@ if(isset($_GET['ashtray'])){
 //WEEK VIEW 
 echo "<div id=\"days\">
         <span><a href=\"index.php?ashtray\">Day</a></span> 
-        <span><a href=\"index.php?ashtray&month\">Month</a></span>
+        <span><a href=\"index.php?ashtray&month\">Packs</a></span>
         <span><a href=\"smokers.php\">Smokers</a></span>
     </div>
     </header>
@@ -47,7 +47,7 @@ echo "<div id=\"days\">
     //MONTH VIEW
 echo "<div id=\"days\">
         <span><a href=\"index.php?ashtray\">Day</a></span>
-        <span id=\"current\"><a href=\"index.php?ashtray&month\">Month</a></span>
+        <span id=\"current\"><a href=\"index.php?ashtray&month\">Packs</a></span>
         <span><a href=\"smokers.php\">Smokers</a></span>
     </div> </header><div id=\"page\">";
         
@@ -85,7 +85,7 @@ echo "<div id=\"days\">
     }else{
     echo "<div id=\"days\">
         <span id=\"current\"><a href=\"index.php?ashtray\">Day</a></span> 
-        <span><a href=\"index.php?ashtray&month\">Month</a></span>
+        <span><a href=\"index.php?ashtray&month\">Packs</a></span>
         <span><a href=\"smokers.php\">Smokers</a></span>
     </div> </header><div id=\"page\">";
         
@@ -96,13 +96,18 @@ echo "<div id=\"days\">
     $today_rows=mysqli_num_rows($result);
         if($today_rows>=1){
             foreach ($result as $row) {
-                echo "<div class=\"container\">";
-                echo "<h3>" . $row["weekday"] . " " . $row["month"] . " " . get_suffix($row["day"]) .  ", " . $row["year"] . "</h3>";
+//                echo "<div class=\"container\">";
+//                echo "<h3>" . $row["weekday"] . " " . $row["month"] . " " . get_suffix($row["day"]) .  ", " . $row["year"] . "</h3>";
  
                  
                 $today_sql = "SELECT * FROM log WHERE day={$row["day"]} AND year={$row["year"]} AND month='{$row["month"]}' ";
                 $today_result = mysqli_query($connection, $today_sql); 
                 if($today_result){ 
+                    
+                echo "<div class=\"container\">";
+                echo "<h3>" . $row["weekday"] . " " . $row["month"] . " " . get_suffix($row["day"]) .  ", " . $row["year"] . "</h3>";
+                    
+                    
                     foreach($today_result as $today){
                         //SEE IF FRIEND BEFORE SHOWING COUNT
                         $friend_sql = "SELECT * FROM friends WHERE user_id={$_SESSION['user_id']} AND friend_id={$today['user_id']}";
@@ -119,10 +124,7 @@ echo "<div id=\"days\">
                             echo "<span class=\"orange half\"><h4>".$_SESSION['username']."</h4> <h1>" . $today['total'] . "</h1></span>";
                         }
  
-                }//end if anyone smoked today 
-
-
-
+                }//end if anyone smoked today  
                 echo "</div>"; //END CONTAINER
             }//END GET EACH USER
         

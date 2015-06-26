@@ -34,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <title>BCB Login</title>
     <link rel="stylesheet" href="css/style.css">
     <link href='http://fonts.googleapis.com/css?family=Special+Elite|Carme|Flavors' rel='stylesheet' type='text/css'>
+     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 <body>
  <header>
@@ -48,10 +49,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
        <input type="password" name="password" placeholder="PASSWORD">
        <input type="submit" name="login" value="Smoke">
    </form>
-     <br>
+   <br>
+    <a class="forgot_pass" title="Forgot Your Password?" href="forgot_password.php"><i title="Forgot Your Password?" class="fa fa-question-circle"> Forgot Your Password?</i></a></p>  
+     
      <br>
      <br>
  <a id="smoke_script" href="register.php">New Smoker</a> 
+ 
      
     </div>
 </body>
