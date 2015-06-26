@@ -50,11 +50,11 @@ function validate_email_unique($new_email) {
   global $errors;
   global $connection;
 
-  $check_username  = "SELECT * FROM users WHERE username = '{$new_username}'";
-  $username_checked = mysqli_query($connection, $check_username);
+  $check_email  = "SELECT * FROM users WHERE email = '{$new_email}'";
+  $email_checked = mysqli_query($connection, $check_email);
 
-  if (mysqli_num_rows($username_checked) != 0) {
-    $errors["Username"] = "This username is taken";
+  if (mysqli_num_rows($email_checked) != 0) {
+    $errors["Email"] = "This email is taken";
   }
 }
 
