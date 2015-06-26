@@ -27,8 +27,22 @@ function validate_presences($required_fields) {
 
 function validate_characters($string, $fieldname) {
   global $errors;
-  if (!preg_match('/^[a-zA-Z0-9_\.]*$/', $string)) {
-    $errors[$fieldname] = fieldname_as_text($fieldname) . " contains invalid characters";
+
+  switch ($fieldname) {
+    case "username":
+      if (!preg_match('/^[a-zA-Z0-9_\.]*$/', $string)) {
+        $errors[$fieldname] = fieldname_as_text($fieldname) . " contains invalid characters";
+      }
+      break;
+
+    case "email":
+      if (!preg_match('/^[a-zA-Z0-9@_\.]*$/', $string)) {
+        $errors[$fieldname] = fieldname_as_text($fieldname) . " contains invalid characters";
+      }
+      break;
+
+    default:
+      break;
   }
 }
 
